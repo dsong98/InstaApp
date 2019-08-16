@@ -10,7 +10,6 @@ import PhotoViewer from "./components/carousel";
 const axios = require("axios");
 const apiurl = "https://api.instagram.com/v1";
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -77,9 +76,12 @@ export default class App extends React.Component {
             picArray: this.state.picArray.concat(
               res.data.data[i].images.standard_resolution.url
             ),
-            captionArray: this.state.captionArray.concat(res.data.data[1].caption.text)
+            captionArray: this.state.captionArray.concat(
+              res.data.data[1].caption.text
+            )
           });
         }
+        alert("Found " + res.data.data.length + " photos on your account!");
       });
   }
 
@@ -98,42 +100,43 @@ export default class App extends React.Component {
         </div>
 
         <Row>
-          <Col xs="2" sm="2" className="centercol border-right">
+          <Col xs="4" sm="4" className="centercol border-right">
             <div style={{ marginTop: "5%" }}>
               <Button color="primary" onClick={() => this.navigate()}>
                 Grant Access
               </Button>
             </div>
-          </Col>
-          <Col>
             <div style={{ marginTop: "2%" }}>
-              <Alert color="warning" style={{ width: "40%" }}>
+              <Alert color="warning" style={{ width: "100%" }}>
                 <div>Received access to Instagram account:</div>
                 <div style={{ fontWeight: "bold" }}>
                   {this.state.gotToken.toString()}
                 </div>
               </Alert>
             </div>
+            <div style={{ marginTop: "30%" }}>
+              <Button color="success" onClick={() => this.getAPIinfo()}>
+                Get Info
+              </Button>
+            </div>
+          </Col>
+          <Col>
+            <div
+              style={{
+                width: 600,
+                resize: "contain",
+                marginTop: "4%",
+                marginBottom: "10%"
+              }}
+            >
+              <PhotoViewer
+                imgArray={this.state.picArray}
+                captionArray={this.state.captionArray}
+              />
+              {/* {slider} */}
+            </div>
           </Col>
         </Row>
-
-        <div style={{ marginTop: "2%" }}>
-          <Button color="success" onClick={() => this.getAPIinfo()}>
-            Get Info
-          </Button>
-        </div>
-
-        <div
-          style={{
-            width: 600,
-            resize: "contain",
-            marginTop: "4%",
-            marginBottom: "10%"
-          }}
-        >
-          <PhotoViewer imgArray={this.state.picArray} captionArray={this.state.captionArray}/>
-          {/* {slider} */}
-        </div>
       </Container>
     );
   }

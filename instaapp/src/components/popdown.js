@@ -11,7 +11,7 @@ export default class InfoBox extends React.Component {
     return (
       <div>
         <Button id="PopoverLegacy" type="button">
-          About this page
+          How to use this page
         </Button>
         <UncontrolledPopover
           trigger="legacy"
@@ -22,13 +22,13 @@ export default class InfoBox extends React.Component {
           <PopoverBody>
               This page uses Instagram API to get information from your profile, such as photos.
               <br/>
-              1.) Allow this page access to your Instagram account by clicking 'Grant Access'
+              1.) Allow this page access to your Instagram account by clicking 'Grant Access'.
               <br/>
-              2.) Sign into your account
+              2.) You should be redirected to Instagram. Sign into your account there.
               <br/>
-              3.) You should be redirected to this page, if not make sure to navigate back
+              3.) You should be redirected back to this page, if not make sure to navigate back.
               <br/>
-              4.) Click 'Get Info'
+              4.) Click 'Get Info' to get your photos and captions!
               <br/>
               <br/>
               This page was built by Daniel Song.
